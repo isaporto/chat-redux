@@ -5,18 +5,18 @@ import { connect } from 'react-redux';
 import { createMessage, setUsername, fetchMessages } from '../actions';
 
 class MessageForm extends Component {
+  constructor(props) {
+    super(props);
+
+    this.messageBox = React.createRef();
+  }
+
   componentWillMount() {
     this.props.setUsername();
   }
 
   componentDidMount() {
-    setInterval(() => {
-      this.fetchMessages();
-    }, 1000);
-  }
-
-  componentWillUnmount() {
-    clearInterval();
+    this.messageBox.current.focus();
   }
 
   handleSubmit = (e) => {
@@ -36,7 +36,7 @@ class MessageForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit} className="message-form">
-        <input id="new-message" type="text" />
+        <input id="new-message" type="text" ref={this.messageBox} />
         <button type="submit">Send</button>
       </form>
     );

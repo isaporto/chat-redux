@@ -35,8 +35,14 @@ body {
   box-sizing: border-box;
 }
 
-.channels-list span {
+.channels-list button {
+  border: none;
   font-weight: 600;
+  background: transparent;
+}
+.channels-list button:focus {
+  outline: none;
+  border: none;
 }
 
 .channels-list > ul {
@@ -93,19 +99,20 @@ body {
   width: -webkit-fill-available;
   box-sizing: border-box;
   height: 100%;
-  overflow: scroll;
 }
 
 .message-list {
   padding: 20px 20px 0 28px;
+  overflow-y: scroll;
+  height: -webkit-fill-available;
 }
 
-.message-list > i {
+.message-list .author {
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
 }
-.message-list > i > em {
+.message-list em {
   position: relative;
   margin-left: 10px;
   font-style: italic;
@@ -113,7 +120,7 @@ body {
   opacity: 0.6;
 }
 
-.message-list > i > em::before {
+.message-list em::before {
   content: "-";
   position: absolute;
   top: -1px;
@@ -140,7 +147,7 @@ input[type="text"] {
   border-color: #d4d4d4;
 }
 
-button {
+.message-form > button {
   padding: 10px 17px;
   margin-left: -2px;
   border-radius: 0 2px 2px 0;

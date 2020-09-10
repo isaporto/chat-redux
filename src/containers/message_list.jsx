@@ -12,6 +12,18 @@ class MessageList extends Component {
     this.fetchMessages();
   }
 
+  componentDidMount() {
+    this.refresher = setInterval(this.fetchMessages, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.refresher);
+  }
+
+  componentDidUpdate() {
+    this.list.scrollTop = this.list.scrollHeight;
+  }
+
   fetchMessages = () => {
     const { selectedChannel } = this.props;
     this.props.fetchMessages(selectedChannel);
@@ -23,10 +35,10 @@ class MessageList extends Component {
     return (
       <div className="messages-container">
         <div className="title">
-          <spam>Channel #{selectedChannel}</spam>
+          <span>Channel #{selectedChannel}</span>
         </div>
-        <div className="message-list">
-          {messages.map(message => <Message message={message} id={message.id} />)}
+        <div className="message-list" ref={(list) => { this.list = list; }}>
+          {messages.map(message => <Message message={message} key={message.id} />)}
         </div>
         <MessageForm />
       </div>

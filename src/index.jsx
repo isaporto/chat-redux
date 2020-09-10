@@ -3,7 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { logger } from 'redux-logger';
 import reduxPromise from 'redux-promise';
 
 // internal modules
@@ -17,7 +16,7 @@ import selectedChannelReducer from './reducers/selected_channel_reducer';
 import currentUsernameReducer from './reducers/current_username_reducer';
 import newMessageReducer from './reducers/new_message_reducer';
 
-const middlewares = applyMiddleware(reduxPromise, logger);
+const middlewares = applyMiddleware(reduxPromise);
 
 const reducers = combineReducers({
   channels: channelsReducer,

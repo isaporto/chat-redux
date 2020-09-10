@@ -4,19 +4,30 @@ import { connect } from 'react-redux';
 
 import Message from '../components/message';
 import MessageForm from './message_form';
-import { setMessages } from '../actions';
+import { fetchMessages } from '../actions';
 
 
 class MessageList extends Component {
   componentWillMount() {
-    const { selectedChannel } = this.props;
-    this.props.setMessages(selectedChannel);
+    this.fetchMessages();
   }
 
+  fetchMessages = () => {
+    const { selectedChannel } = this.props;
+    this.props.fetchMessages(selectedChannel);
+  }
+
+
   render() {
+    const { messages, selectedChannel } = this.props;
     return (
-      <div className="message-list">
-        {this.props.messages}
+      <div className="messages-container">
+        <div className="title">
+          <spam>Channel #{selectedChannel}</spam>
+        </div>
+        <div className="message-list">
+          {messages.map(message => <Message message={message} id={message.id} />)}
+        </div>
         <MessageForm />
       </div>
     );
@@ -25,15 +36,15 @@ class MessageList extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
-    { setMessages },
+    { fetchMessages },
     dispatch
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    messages: state.messages,
     selectedChannel: state.selectedChannel,
+    messages: state.messages,
   };
 };
 

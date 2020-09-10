@@ -12,7 +12,16 @@ class ChannelList extends Component {
   render() {
     const { channels } = this.props;
     return (
-      channels.map(channel => <button remote="true">{channel}</button>)
+      <div className="channel-content">
+        <div className="channel-title">
+          <span>Redux Chat</span>
+        </div>
+        <div className="channels-list">
+          <ul>
+            {channels.map(channel => <li><span>#{channel}</span></li>)}
+          </ul>
+        </div>
+      </div>
     );
   }
 }

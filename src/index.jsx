@@ -15,6 +15,7 @@ import channelsReducer from './reducers/channels_reducer';
 import messagesReducer from './reducers/messages_reducer';
 import selectedChannelReducer from './reducers/selected_channel_reducer';
 import currentUsernameReducer from './reducers/current_username_reducer';
+import newMessageReducer from './reducers/new_message_reducer';
 
 const middlewares = applyMiddleware(reduxPromise, logger);
 
@@ -22,6 +23,7 @@ const reducers = combineReducers({
   channels: channelsReducer,
   currentUsername: currentUsernameReducer,
   messages: messagesReducer,
+  newMessage: newMessageReducer,
   selectedChannel: selectedChannelReducer,
 });
 

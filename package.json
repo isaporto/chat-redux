@@ -1,4 +1,5 @@
 {
+  "homepage": "https://isaporto.github.io/chat-redux/",
   "license": "UNLICENSED",
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -33,6 +34,7 @@
     "redux-promise": "^0.6.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
     "start": "webpack-dev-server --mode development",
     "lint": "eslint './src/**/*.js' './src/**/*.jsx'",
     "deploy": "webpack -p && gh-pages -d dist"
